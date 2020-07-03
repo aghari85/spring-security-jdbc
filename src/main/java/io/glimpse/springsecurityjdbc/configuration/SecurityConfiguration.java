@@ -1,4 +1,4 @@
-package io.glimpse.springsecurityjdbc;
+package io.glimpse.springsecurityjdbc.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +18,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
+    /**
+     * This method provides authentication.
+     * It will check the user credentials and role
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
@@ -35,6 +41,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 );
     }
 
+    /**
+     * This method deals authorization.
+     * It defines endpoint specific authorization.
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()

@@ -28,17 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .withDefaultSchema()
-                .withUser(
-                        User.withUsername("user")
-                        .password("user")
-                        .roles("USER")
-                )
-                .withUser(
-                        User.withUsername("admin")
-                        .password("admin")
-                        .roles("ADMIN")
-                );
+                .usersByUsernameQuery("select username,password,active as enable from my_user where username=?")
+                .authoritiesByUsernameQuery("select username,role as authority from my_authorities where username=?");
     }
 
     /**

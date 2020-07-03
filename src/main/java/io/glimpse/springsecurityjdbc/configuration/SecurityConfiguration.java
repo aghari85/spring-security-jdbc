@@ -1,4 +1,4 @@
-package io.glimpse.springsecurityjdbc.security;
+package io.glimpse.springsecurityjdbc.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
